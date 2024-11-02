@@ -1,8 +1,7 @@
 import pygame
 
-#setup window
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE)
 clock = pygame.time.Clock()
 running = True
 
