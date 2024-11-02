@@ -6,8 +6,15 @@ screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE)
 clock = pygame.time.Clock()
 running = True
 
+#sprites
+#putspriteshere
+
+#audio
+#putaudiohere
+
 while running:
     # poll for events
+    
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -17,7 +24,7 @@ while running:
                 running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("purple") #porple borgler alam
 
     # RENDER YOUR GAME HERE
 
@@ -25,5 +32,5 @@ while running:
     pygame.display.flip()
 
     clock.tick(60)  # limits FPS to 60
-
+    
 pygame.quit()
