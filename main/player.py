@@ -9,4 +9,5 @@ class Player:
     def movement(self):
         keys = pygame.key.get_pressed()
         #keys
-            
+    
+    #draw define method
