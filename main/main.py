@@ -1,4 +1,5 @@
 import pygame
+from player import Player
 
 #setup window
 pygame.init()
