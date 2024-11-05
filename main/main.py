@@ -3,15 +3,9 @@ from player import Player
 
 #setup
 pygame.init()
-screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE)
+screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE) #make it perhaps fixed to screen monitor size
 clock = pygame.time.Clock()
 running = True
-
-#sprites
-#putspriteshere
-
-#audio
-#putaudiohere
 
 while running:
     # poll for events
