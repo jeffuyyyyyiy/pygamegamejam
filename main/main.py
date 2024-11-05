@@ -1,17 +1,21 @@
 import pygame
 from player import Player
+from gui import Gui
 
 #setup
+width = 420
+height = 420
 pygame.init()
-screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE) #make it perhaps fixed to screen monitor size
+screen = pygame.display.set_mode((width, height), pygame.RESIZABLE) #make it perhaps fixed to screen monitor size
 clock = pygame.time.Clock()
 running = True
 player = Player(210, 210)
+#menuGui constructor
 
 while running:
     # poll for events
     
-    # pygame.QUIT event means the user clicked X to close your window
+    # pygame.QUIT event means the user clicked X to close your window / alternative exit click esc
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -19,10 +23,10 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
 
-    player.movement()
+    player.movement(0, 0, width, height)
     
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("black") #porple borgler alam
+    screen.fill("black")
     player.draw(screen)
 
     # RENDER YOUR GAME HERE
