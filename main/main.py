@@ -6,6 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((420, 420), pygame.RESIZABLE) #make it perhaps fixed to screen monitor size
 clock = pygame.time.Clock()
 running = True
+player = Player(210, 210)
 
 while running:
     # poll for events
@@ -18,8 +19,11 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
 
+    player.movement()
+    
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple") #porple borgler alam
+    screen.fill("black") #porple borgler alam
+    player.draw(screen)
 
     # RENDER YOUR GAME HERE
 
