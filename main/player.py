@@ -76,6 +76,7 @@ class Player:
                     elif math.trunc(self.imageIndex) % 2 == 1:
                         self.image = pygame.image.load('main\sprites\player\sl_right_idle.png')
         else:
+            self.imageIndex = 0
             match cardinal:
                 case "up":
                     self.image = pygame.image.load('main\sprites\player\sl_up_idle.png')
