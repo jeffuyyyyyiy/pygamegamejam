@@ -10,6 +10,7 @@ screen = pygame.display.set_mode((width, height), pygame.RESIZABLE) #make it per
 clock = pygame.time.Clock()
 running = True
 player = Player(210, 210)
+player.startThread()
 #menuGui constructor
 
 while running:
