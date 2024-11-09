@@ -116,7 +116,6 @@ class Player():
             case "down":
                 self.collidedDown = True  
     
-    #ion even know how this works
     def scale(self, sizex, sizey):
         folder_Path = 'main\sprites\player'
         path = Path(folder_Path)
