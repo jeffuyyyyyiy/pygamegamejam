@@ -1,11 +1,18 @@
 import pygame
 
 class Gui:
-    def __init__(self, posx, posy, img):
-        self.image = pygame.image.load(img)
+    def __init__(self, posx, posy, imgPath):
+        self.image = pygame.image.load(imgPath)
         self.rect = self.image.get_rect()
         self.rect.topleft = (posx, posy)
         
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+
+class HealthBar(Gui):
+    pass
+
+class TabBar(Gui):
     def enabler(self, surface):
         keys = pygame.key.get_pressed()
         enabled = False
@@ -17,6 +24,3 @@ class Gui:
         
         if enabled == True:
             surface.blit(self.image, self.rect)
-
-class HealthBar(Gui):
-    pass

@@ -2,12 +2,15 @@ import pygame
 import math
 import threading
 import time
+from PIL import Image
+from pathlib import Path
 
-class Player:
+class Player():
     #instance variables
     
     #constructs player object
-    def __init__(self, x, y):
+    def __init__(self, x, y, sizex, sizey):
+        self.scale(sizex, sizey)
         self.image = pygame.image.load('main\sprites\player\sl_down_idle.png')
         self.imageIndex = 0
         self.rect = self.image.get_rect()
@@ -15,6 +18,11 @@ class Player:
         self.speed = 1 #placeholder
         self.moving = False
         self.lastDeclaredDirection = "down"
+        #collision
+        self.collidedLeft = False
+        self.collidedRight = False
+        self.collidedUp = False
+        self.collidedDown = False
     
     def incrementCounter(self):
         while True:
@@ -31,25 +39,25 @@ class Player:
         self.moving = False
         
         if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            if self.rect.left > (0 + offsetx):
+            if self.rect.left > (0 + offsetx) and not self.collidedLeft:
                 self.lastDeclaredDirection = "left"
                 self.moving = True
                 self.rect.x -= self.speed
                 self.animate(self.lastDeclaredDirection, self.moving)
         if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            if self.rect.right < (width - offsetx):
+            if self.rect.right < (width - offsetx) and not self.collidedRight:
                 self.moving = True
                 self.rect.x += self.speed
                 self.lastDeclaredDirection = "right"
                 self.animate(self.lastDeclaredDirection, self.moving)
         if keys[pygame.K_w] or keys[pygame.K_UP]:
-            if self.rect.top > (0 + offsety):
+            if self.rect.top > (0 + offsety) and not self.collidedUp:
                 self.moving = True
                 self.rect.y -= self.speed
                 self.lastDeclaredDirection = "up"
                 self.animate(self.lastDeclaredDirection, self.moving)
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-            if self.rect.bottom < (height - offsety):
+            if self.rect.bottom < (height - offsety) and not self.collidedDown:
                 self.moving = True
                 self.rect.y += self.speed
                 self.lastDeclaredDirection = "down"
@@ -96,3 +104,24 @@ class Player:
                     self.image = pygame.image.load('main\sprites\player\sl_left_idle.png')
                 case "right":
                     self.image = pygame.image.load('main\sprites\player\sl_right_idle.png')
+                
+    def collision(self, direction):
+        match direction:
+            case "left":
+                self.collidedLeft = True
+            case "right":
+                self.collidedRight = True
+            case "up":
+                self.collidedUp = True
+            case "down":
+                self.collidedDown = True  
+    
+    #ion even know how this works
+    def scale(self, sizex, sizey):
+        folder_Path = 'main\sprites\player'
+        path = Path(folder_Path)
+        for file_path in path.rglob('*.*'):
+            image = Image.open(file_path)
+            new_size = (sizex, sizey)
+            new_image = image.resize(new_size, Image.LANCZOS)
+            new_image.save(file_path, format="PNG")

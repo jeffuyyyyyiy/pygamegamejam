@@ -1,6 +1,9 @@
 import pygame
 from player import Player
 from gui import Gui
+from spriteMap import SpriteMap
+import os
+import shutil
 
 #setup
 width = 420
@@ -8,9 +11,9 @@ height = 420
 pygame.init()
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE) #make it perhaps fixed to screen monitor size
 clock = pygame.time.Clock()
-running = True
-player = Player(210, 210)
+player = Player(210, 210, 50, 50)
 player.startThread()
+running = True
 #menuGui constructor
 
 while running:
@@ -38,3 +41,13 @@ while running:
     clock.tick(60)  # limits FPS to 60
     
 pygame.quit()
+
+#replace all images compressed using lossy compression into its normal resolution
+def replacefolder(source, destination):
+    temp = destination + "_temp"
+    shutil.copytree(source,temp)
+    shutil.rmtree(destination)
+    shutil.move(temp, destination)
+    
+replacefolder('main\sprites\Backupplayer', 'main\sprites\player')
+    
