@@ -55,7 +55,7 @@ def playCutscene():
                 textalpha += 0.1
             screen.blit(text, (250, 370))
             pygame.display.flip()
-        elif time.time() - cutscene_time < 15:
+        elif time.time() - cutscene_time < 15.6:
             first_imagerescaled = pygame.transform.scale(first_image, (800,440))
             first_imagerescaled_rect = first_imagerescaled.get_rect()
             first_imagerescaled.set_alpha(firstalpha)
@@ -68,12 +68,12 @@ def playCutscene():
             screen.blit(first_imagerescaled, first_imagerescaled_rect)
             screen.blit(text, (250, 370))
             pygame.display.flip()
-        elif time.time() - cutscene_time < 15.3:
+        elif time.time() - cutscene_time < 15.8:
             second_imagerescaled = pygame.transform.scale(second_image, (800,440))
             second_imagerescaled_rect = second_imagerescaled.get_rect()
             screen.blit(second_imagerescaled, second_imagerescaled_rect)
             pygame.display.flip()
-        elif time.time() - cutscene_time < 15.4:
+        elif time.time() - cutscene_time < 15.9:
             third_imagerescaled = pygame.transform.scale(third_image, (800,440))
             third_imagerescaled_rect = third_imagerescaled.get_rect()
             screen.blit(third_imagerescaled, third_imagerescaled_rect)
