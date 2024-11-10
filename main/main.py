@@ -25,7 +25,9 @@ first_image = pygame.image.load('main\intro\intro1.png').convert_alpha()
 second_image = pygame.image.load('main\intro\intro2.png').convert_alpha()
 third_image = pygame.image.load('main\intro\intro3.png').convert_alpha()
 fourth_image = pygame.image.load('main\intro\intro4.png').convert_alpha()
+
 rain = pygame.mixer_music.load('main\Audio\intro_ambience.mp3')
+roomMap = SpriteMap(player, 'main\sprites\mapSprites\map_house.png', 0, 0)
 
 def playCutscene():
     cutscene_time = time.time()
@@ -121,7 +123,9 @@ while running:
     
     # fill the screen with a color to wipe away anything from last frame
     
+    roomMap.draw(screen)
     player.draw(screen)
+    
 
     # RENDER YOUR GAME HERE
     if startCutscenePlaying:
