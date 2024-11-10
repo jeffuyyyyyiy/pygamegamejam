@@ -1,4 +1,5 @@
 import pygame
+import threading
 
 class SpriteMap:
     def __init__(self, player, imgPath, posx, posy):
@@ -8,12 +9,14 @@ class SpriteMap:
         self.image = pygame.image.load(imgPath)
         self.rect = self.image.get_rect()
         self.rect.topleft = (posx, posy)
+        self.colliders = []
         
     #send collision constraints here must be rectangle
     #self.client.collision(direction)
-    def collider(self, topLeft, topRight, bottomLeft, bottomRight):
+    def collision(self):
         pass
     
     def draw(self, surface):
         surface.blit(self.image, self.rect)
+        
         

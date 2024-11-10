@@ -8,6 +8,22 @@ import time
 import threading
 from pathlib import Path
 from PIL import Image
+import json
+
+#datasetup
+
+database_file_path = 'main\Database\playerLocation.json'
+
+def read_json(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
+
+def write_json(file_path, data):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+
+data = read_json(database_file_path)
 
 #setup
 width = 800
@@ -18,7 +34,7 @@ clock = pygame.time.Clock()
 player = Player(210, 210, 125, 125)
 player.startThread()
 running = True
-startCutscenePlaying = True
+startCutscenePlaying = data['startCutscenePlaying']
 cutscene_starting_text = pygame.font.SysFont('Comic Sans MS', 16)
 
 first_image = pygame.image.load('main\intro\intro1.png').convert_alpha()
@@ -130,6 +146,7 @@ while running:
     # RENDER YOUR GAME HERE
     if startCutscenePlaying:
         playCutscene()
+        data['startCutscenePlaying'] = False
         startCutscenePlaying = False
 
     # flip() the display to put your work on screen
@@ -138,6 +155,8 @@ while running:
     clock.tick(60)  # limits FPS to 60
     
 pygame.quit()
+
+write_json(database_file_path, data)
 
 #replace all images compressed using lossy compression into its normal resolution
 def replacefolder(source, destination):
