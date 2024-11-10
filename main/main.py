@@ -31,6 +31,7 @@ def playCutscene():
     cutscene_time = time.time()
     textalpha = 0
     firstalpha = 0
+    fourthalpha = 255
     pygame.mixer_music.play()
     
     while time.time() - cutscene_time < 25:
@@ -52,36 +53,54 @@ def playCutscene():
             text.set_alpha(textalpha)
             if textalpha < 255:
                 textalpha += 0.1
-            screen.blit(text, (400, 370))
+            screen.blit(text, (250, 370))
             pygame.display.flip()
         elif time.time() - cutscene_time < 15:
             first_imagerescaled = pygame.transform.scale(first_image, (800,440))
             first_imagerescaled_rect = first_imagerescaled.get_rect()
             first_imagerescaled.set_alpha(firstalpha)
             text.set_alpha(textalpha)
-            if firstalpha < 255:
+            if firstalpha < 170:
                 firstalpha += 0.1
                 
             if firstalpha > 150 and textalpha > 0:
                 textalpha -= 0.1
             screen.blit(first_imagerescaled, first_imagerescaled_rect)
-            screen.blit(text, (400, 370))
+            screen.blit(text, (250, 370))
             pygame.display.flip()
-        elif time.time() - cutscene_time < 15.5:
+        elif time.time() - cutscene_time < 15.3:
             second_imagerescaled = pygame.transform.scale(second_image, (800,440))
             second_imagerescaled_rect = second_imagerescaled.get_rect()
             screen.blit(second_imagerescaled, second_imagerescaled_rect)
             pygame.display.flip()
-        elif time.time() - cutscene_time < 16:
+        elif time.time() - cutscene_time < 15.4:
             third_imagerescaled = pygame.transform.scale(third_image, (800,440))
             third_imagerescaled_rect = third_imagerescaled.get_rect()
             screen.blit(third_imagerescaled, third_imagerescaled_rect)
             pygame.display.flip()
-        elif time.time() - cutscene_time < 25:
+        elif time.time() - cutscene_time < 20:
             fourth_imagerescaled = pygame.transform.scale(fourth_image, (800,440))
             fourth_imagerescaled_rect = fourth_imagerescaled.get_rect()
+            fourth_imagerescaled.set_alpha(fourthalpha)
+            if fourthalpha > 0:
+                fourthalpha -= 0.1
             screen.blit(fourth_imagerescaled, fourth_imagerescaled_rect)
             pygame.display.flip()
+        elif time.time() - cutscene_time < 23.5:
+            text = cutscene_starting_text.render("\"An adventure awaits you.\"", False, (255,255,255))
+            text.set_alpha(textalpha)
+            if textalpha <= 255:
+                textalpha += 0.1
+            screen.blit(text, (300, 370))
+            pygame.display.flip()
+        elif time.time() - cutscene_time < 25:
+            text = cutscene_starting_text.render("\"An adventure awaits you.\"", False, (255,255,255))
+            text.set_alpha(textalpha)
+            if textalpha > 0:
+                textalpha -= 0.1
+            screen.blit(text, (300, 370))
+            pygame.display.flip()
+            
         
 #menuGui constructor
 
