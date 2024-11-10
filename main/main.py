@@ -2,12 +2,8 @@ import pygame
 from player import Player
 from gui import Gui
 from spriteMap import SpriteMap
-import os
 import shutil
 import time
-import threading
-from pathlib import Path
-from PIL import Image
 import json
 
 #datasetup
