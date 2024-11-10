@@ -15,7 +15,7 @@ height = 440
 pygame.init()
 screen = pygame.display.set_mode((width, height)) #make it perhaps fixed to screen monitor size
 clock = pygame.time.Clock()
-player = Player(210, 210, 50, 50)
+player = Player(210, 210, 125, 125)
 player.startThread()
 running = True
 startCutscenePlaying = True
