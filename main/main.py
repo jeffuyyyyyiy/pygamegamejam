@@ -1,7 +1,6 @@
 import pygame
 from player import Player
 from gui import Gui
-from spriteMap import SpriteMap
 import shutil
 import time
 import json
@@ -9,6 +8,7 @@ import json
 #datasetup
 
 database_file_path = 'main\Database\playerLocation.json'
+map_file_path = 'main\Database\playerMap.json'
 
 def read_json(file_path):
     with open(file_path, 'r') as file:
@@ -20,6 +20,7 @@ def write_json(file_path, data):
         json.dump(data, file, indent=4)
 
 data = read_json(database_file_path)
+mapdata = read_json(map_file_path)
 
 #setup
 width = 800
@@ -39,7 +40,8 @@ third_image = pygame.image.load('main\intro\intro3.png').convert_alpha()
 fourth_image = pygame.image.load('main\intro\intro4.png').convert_alpha()
 
 rain = pygame.mixer_music.load('main\Audio\intro_ambience.mp3')
-roomMap = SpriteMap(player, 'main\sprites\mapSprites\map_house.png', 0, 0)
+
+map_house = pygame.image.load('main\sprites\mapSprites\map_house.png').convert_alpha()
 
 def playCutscene():
     cutscene_time = time.time()
@@ -131,11 +133,16 @@ while running:
         
     screen.fill("black")
 
-    player.movement(0, 0, width, height)
+    player.movement(width, height)
     
-    # fill the screen with a color to wipe away anything from last frame
+    # fill the screen with a color to wipe away anything from last frame\
+        
+    match mapdata['location']:
+        case "room":
+            resized_map_house = pygame.transform.scale(map_house, (800, 440))
+            resized_map_house_rect = resized_map_house.get_rect()
+            screen.blit(resized_map_house, resized_map_house_rect)
     
-    roomMap.draw(screen)
     player.draw(screen)
     
 
@@ -163,5 +170,6 @@ def replacefolder(source, destination):
     
 replacefolder('main\sprites\Backupplayer', 'main\sprites\player')
 replacefolder('main\Backupintro', 'main\intro')
+replacefolder('main\sprites\Backupmap', 'main\sprites\mapSprites')
 
 exit()

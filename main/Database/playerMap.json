@@ -1,0 +1,67 @@
+{
+    "location": "room",
+    "locations": [
+        {
+            "locationname": "room",
+            "colliders": [
+                {
+                    "direction": "left",
+                    "terminateMovement": 100,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "up", 
+                    "terminateMovement": 40,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                },
+                {
+                    "direction": "right",
+                    "terminateMovement": 700,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "down",
+                    "terminateMovement": 400,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                }
+            ],
+            "interactable": [
+                {
+                    "item": "placeholder",
+                    "description": "ligma",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "nextarea": [
+                {
+                    "nextlocation": "placeholder",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

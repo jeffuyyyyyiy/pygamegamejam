@@ -4,6 +4,18 @@ import threading
 import time
 from PIL import Image
 from pathlib import Path
+import json
+
+def read_json(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
+
+def write_json(file_path, data):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+        
+data = read_json('main\Database\playerMap.json')
 
 class Player():
     #instance variables
@@ -28,40 +40,69 @@ class Player():
         while True:
             self.imageIndex += 0.1
             time.sleep(0.025)
+            
+    def collisionHandler(self):
+        while True:
+            for currentLocation in data['locations']:
+                if currentLocation['locationname'] == data['location']:
+                    for collider in currentLocation['colliders']:
+                        match collider['direction']:
+                            case 'left':
+                                if self.rect.left <= collider['terminateMovement']:
+                                    if self.rect.top >= collider['areaOfEffect'][0] and self.rect.bottom <= collider['areaOfEffect'][1]:
+                                        self.collision(collider['direction'])
+                            case 'up':
+                                if self.rect.top <= collider['terminateMovement']:
+                                    if self.rect.left >= collider['areaOfEffect'][0] and self.rect.right <= collider['areaOfEffect'][1]:
+                                        self.collision(collider['direction'])
+                            case 'right':
+                                if self.rect.right >= collider['terminateMovement']:
+                                    if self.rect.top >= collider['areaOfEffect'][0] and self.rect.bottom <= collider['areaOfEffect'][1]:
+                                        self.collision(collider['direction'])
+                            case 'down':
+                                if self.rect.bottom >= collider['terminateMovement']:
+                                    if self.rect.left >= collider['areaOfEffect'][0] and self.rect.right <= collider['areaOfEffect'][1]:
+                                        self.collision(collider['direction'])
     
     def startThread(self):
         thread1 = threading.Thread(target=self.incrementCounter)
         thread1.start()
+        thread2 = threading.Thread(target=self.collisionHandler)
+        thread2.start()
     
     #changes position of player depending on key input
-    def movement(self, offsetx, offsety, width, height):
+    def movement(self, width, height):
         keys = pygame.key.get_pressed()
         self.moving = False
         
         if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            if self.rect.left > (0 + offsetx) and not self.collidedLeft:
+            if self.rect.left > 0 and not self.collidedLeft:
                 self.lastDeclaredDirection = "left"
                 self.moving = True
                 self.rect.x -= self.speed
                 self.animate(self.lastDeclaredDirection, self.moving)
+                self.collidedRight = False
         if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            if self.rect.right < (width - offsetx) and not self.collidedRight:
+            if self.rect.right < width and not self.collidedRight:
                 self.moving = True
                 self.rect.x += self.speed
                 self.lastDeclaredDirection = "right"
                 self.animate(self.lastDeclaredDirection, self.moving)
+                self.collidedLeft = False
         if keys[pygame.K_w] or keys[pygame.K_UP]:
-            if self.rect.top > (0 + offsety) and not self.collidedUp:
+            if self.rect.top > 0 and not self.collidedUp:
                 self.moving = True
                 self.rect.y -= self.speed
                 self.lastDeclaredDirection = "up"
                 self.animate(self.lastDeclaredDirection, self.moving)
+                self.collidedDown = False
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-            if self.rect.bottom < (height - offsety) and not self.collidedDown:
+            if self.rect.bottom < height and not self.collidedDown:
                 self.moving = True
                 self.rect.y += self.speed
                 self.lastDeclaredDirection = "down"
                 self.animate(self.lastDeclaredDirection, self.moving)
+                self.collidedUp = False
         if self.moving == False:
             self.animate(self.lastDeclaredDirection, self.moving)
     
