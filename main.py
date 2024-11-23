@@ -1,6 +1,6 @@
 import pygame
-from player import Player
-from gui import Gui
+from main.scripts.player import Player
+from main.scripts.gui import Gui
 import shutil
 import time
 import json
