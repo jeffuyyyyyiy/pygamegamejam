@@ -13,7 +13,7 @@
                 },
                 {
                     "direction": "up", 
-                    "terminateMovement": 44,
+                    "terminateMovement": 168,
                     "areaOfEffect": [
                         0, 800
                     ]
@@ -27,7 +27,134 @@
                 },
                 {
                     "direction": "down",
-                    "terminateMovement": 336,
+                    "terminateMovement": 396,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                }
+            ],
+            "interactable": [
+                {
+                    "item": "placeholder",
+                    "description": "ligma",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "nextarea": [
+                {
+                    "nextlocation": "placeholder",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }, 
+
+        {
+            "locationname": "yard",
+            "colliders": [
+                {
+                    "direction": "left",
+                    "terminateMovement": 0,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "up", 
+                    "terminateMovement": 164,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                },
+                {
+                    "direction": "right",
+                    "terminateMovement": 800,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "down",
+                    "terminateMovement": 800,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                }
+            ],
+            "interactable": [
+                {
+                    "item": "placeholder",
+                    "description": "ligma",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "nextarea": [
+                {
+                    "nextlocation": "placeholder",
+                    "colliders": [
+                        {
+                            "direction": "placeholder",
+                            "terminateMovement": 0,
+                            "areaOfEffect": [
+                                0,0
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+
+
+        {
+            "locationname": "street",
+            "colliders": [
+                {
+                    "direction": "left",
+                    "terminateMovement": 0,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "up", 
+                    "terminateMovement": 0,
+                    "areaOfEffect": [
+                        0, 800
+                    ]
+                },
+                {
+                    "direction": "right",
+                    "terminateMovement": 800,
+                    "areaOfEffect": [
+                        0, 440
+                    ]
+                },
+                {
+                    "direction": "down",
+                    "terminateMovement": 800,
                     "areaOfEffect": [
                         0, 800
                     ]
