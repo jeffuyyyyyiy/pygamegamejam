@@ -6,28 +6,28 @@
             "colliders": [
                 {
                     "direction": "left",
-                    "terminateMovement": 100,
+                    "terminateMovement": 104,
                     "areaOfEffect": [
                         0, 440
                     ]
                 },
                 {
                     "direction": "up", 
-                    "terminateMovement": 40,
+                    "terminateMovement": 44,
                     "areaOfEffect": [
                         0, 800
                     ]
                 },
                 {
                     "direction": "right",
-                    "terminateMovement": 700,
+                    "terminateMovement": 696,
                     "areaOfEffect": [
                         0, 440
                     ]
                 },
                 {
                     "direction": "down",
-                    "terminateMovement": 400,
+                    "terminateMovement": 336,
                     "areaOfEffect": [
                         0, 800
                     ]

@@ -42,6 +42,9 @@ fourth_image = pygame.image.load('main\intro\intro4.png').convert_alpha()
 rain = pygame.mixer_music.load('main\Audio\intro_ambience.mp3')
 
 map_house = pygame.image.load('main\sprites\mapSprites\map_house.png').convert_alpha()
+map_outside = pygame.image.load('main\sprites\mapSprites\map_outside.png').convert_alpha()
+map_outside1 = pygame.image.load('main\sprites\mapSprites\map_outside1.png').convert_alpha()
+
 
 def playCutscene():
     cutscene_time = time.time()
@@ -142,6 +145,14 @@ while running:
             resized_map_house = pygame.transform.scale(map_house, (800, 440))
             resized_map_house_rect = resized_map_house.get_rect()
             screen.blit(resized_map_house, resized_map_house_rect)
+        case "yard":
+            resized_map_outside = pygame.transform.scale(map_outside, (800, 440))
+            resized_map_outside_rect = resized_map_outside.get_rect()
+            screen.blit(resized_map_outside, resized_map_outside_rect)
+        case "street":
+            resized_map_outside1 = pygame.transform.scale(map_outside1, (800, 440))
+            resized_map_outside1_rect = resized_map_outside1.get_rect()
+            screen.blit(resized_map_outside1, resized_map_outside1_rect)
     
     player.draw(screen)
     
