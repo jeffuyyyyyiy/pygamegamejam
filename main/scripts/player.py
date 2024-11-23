@@ -49,19 +49,19 @@ class Player():
                         match collider['direction']:
                             case 'left':
                                 if self.rect.left <= collider['terminateMovement']:
-                                    if self.rect.top >= collider['areaOfEffect'][0] and self.rect.bottom <= collider['areaOfEffect'][1]:
+                                    if not self.rect.bottom <= collider['areaOfEffect'][0] or not self.rect.top >= collider['areaOfEffect'][1]:
                                         self.collision(collider['direction'])
                             case 'up':
                                 if self.rect.top <= collider['terminateMovement']:
-                                    if self.rect.left >= collider['areaOfEffect'][0] and self.rect.right <= collider['areaOfEffect'][1]:
+                                    if not self.rect.right <= collider['areaOfEffect'][0] or not self.rect.left >= collider['areaOfEffect'][1]:
                                         self.collision(collider['direction'])
                             case 'right':
                                 if self.rect.right >= collider['terminateMovement']:
-                                    if self.rect.top >= collider['areaOfEffect'][0] and self.rect.bottom <= collider['areaOfEffect'][1]:
+                                    if not self.rect.bottom <= collider['areaOfEffect'][0] or not self.rect.top >= collider['areaOfEffect'][1]:
                                         self.collision(collider['direction'])
                             case 'down':
                                 if self.rect.bottom >= collider['terminateMovement']:
-                                    if self.rect.left >= collider['areaOfEffect'][0] and self.rect.right <= collider['areaOfEffect'][1]:
+                                    if not self.rect.right <= collider['areaOfEffect'][0] or not self.rect.left >= collider['areaOfEffect'][1]:
                                         self.collision(collider['direction'])
     
     def startThread(self):
@@ -165,3 +165,4 @@ class Player():
             new_size = (sizex, sizey)
             new_image = image.resize(new_size, Image.LANCZOS)
             new_image.save(file_path, format="PNG")
+    
