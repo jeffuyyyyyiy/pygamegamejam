@@ -63,12 +63,38 @@ class Player():
                                 if self.rect.bottom >= collider['terminateMovement']:
                                     if not self.rect.right <= collider['areaOfEffect'][0] or not self.rect.left >= collider['areaOfEffect'][1]:
                                         self.collision(collider['direction'])
+                                        
+    def interactableHandler(self):
+        while True:
+            for currentLocation in data['locations']:
+                if currentLocation['locationname'] == data['location']:
+                    for interaction in currentLocation['interactable']:
+                        for collider in interaction['colliders']:
+                            match collider['direction']:
+                                case 'left':
+                                    if self.rect.left <= collider['terminateMovement']:
+                                        if not self.rect.bottom <= collider['areaOfEffect'][0] or not self.rect.top >= collider['areaOfEffect'][1]:
+                                            self.collision(collider['direction'])
+                                case 'up':
+                                    if self.rect.top <= collider['terminateMovement']:
+                                        if not self.rect.right <= collider['areaOfEffect'][0] or not self.rect.left >= collider['areaOfEffect'][1]:
+                                            self.collision(collider['direction'])                                    
+                                case 'right':
+                                    if self.rect.right >= collider['terminateMovement']:
+                                        if not self.rect.bottom <= collider['areaOfEffect'][0] or not self.rect.top >= collider['areaOfEffect'][1]:
+                                            self.collision(collider['direction'])
+                                case 'down':
+                                    if self.rect.bottom >= collider['terminateMovement']:
+                                        if not self.rect.right <= collider['areaOfEffect'][0] or not self.rect.left >= collider['areaOfEffect'][1]:
+                                            self.collision(collider['direction'])
     
     def startThread(self):
         thread1 = threading.Thread(target=self.incrementCounter)
         thread1.start()
         thread2 = threading.Thread(target=self.collisionHandler)
         thread2.start()
+        thread3 = threading.Thread(target=self.interactableHandler)
+        thread3.start()
     
     #changes position of player depending on key input
     def movement(self, width, height):
